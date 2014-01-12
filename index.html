@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>13th Age - Battle Helper</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
+
+    <link href="style/style.css" rel="stylesheet" />
+    <link href="style/mobile.css" rel="stylesheet" media="screen and (max-width: 600px)" />
+  </head>
+  <body>
+    <div id="die" class="screen">
+      <div id="cube">
+        <div class="s1">1</div>
+        <div class="s2">2</div>
+        <div class="s3">3</div>
+        <div class="s4">4</div>
+        <div class="s5">5</div>
+        <div class="s6">6</div>
+      </div>
+    </div>
+    <span id="die-minus">-</span>
+    <span id="die-plus">+</span>
+    <div id="inits" class="screen">
+      <h1>Battle <a href="#" id="battle-link" target="_blank">Link</a><span id="join-battle">(Join active battle)</span></h1>
+      <form action="">
+        <label for="init-name">
+          <b>Name:</b>
+          <input id="init-name" name="init-name" type="text" value="" placeholder="Player name or monster" />
+        </label>
+        <label for="init-value">
+          <b>Init:</b>
+          <input id="init-value" name="init-value" type="number" value="" placeholder="Init score" />
+        </label>
+      </form>
+      <ol></ol>
+    </div>
+
+    <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+    <script src="script/Battle.js"></script>
+    <script src="script/Inits.js"></script>
+    <script src="script/Escalation.js"></script>
+    <script src="script/app.js"></script>
+    <script>
+      App.init({
+        'parse': {
+          'appId': 'mMCbYBxddFLr8nXromEbdvM7rvFZaVAE8VhcJTuT',
+          'key': 'WdBuLQwCsBkIlbc7M5E8gue6muBytGqSk6YxgtCR'
+        }
+      });
+    </script>
+  </body>
+</html>
