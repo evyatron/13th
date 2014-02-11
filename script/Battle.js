@@ -5,6 +5,7 @@ var Battle = (function(){
       elLink,
 
       ParseBattle,
+      onReset,
 
       IS_READ_ONLY = false,
 
@@ -15,6 +16,8 @@ var Battle = (function(){
   function init(options) {
     PARSE_APP_ID = options.parse.appId;
     PARSE_KEY = options.parse.key;
+
+    onReset = options.onReset || function() {};
 
     Parse.initialize(PARSE_APP_ID, PARSE_KEY);
     ParseBattle = Parse.Object.extend('Battle');
@@ -68,6 +71,8 @@ var Battle = (function(){
   function reset() {
     Escalation.reset();
     Inits.reset();
+    save();
+    onReset();
   }
 
   function render() {

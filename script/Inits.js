@@ -3,12 +3,16 @@ var Inits = (function() {
       elName ,
       elValue,
 
+      onInitChange,
+
       players = [];
 
   function init(options) {
     elList = options.elList;
     elName = options.elName;
     elValue = options.elValue;
+
+    onInitChange = options.onInitChange || function(){};
   }
 
   function get() {
@@ -56,13 +60,13 @@ var Inits = (function() {
   }
 
   function renderPlayer(name, init) {
-    init = init * 1;
-
     var el = document.createElement('li');
 
     if (init * 1 != init) {
       init = 0;
     }
+
+    init *= 1;
 
     if (!name && !init) {
       elName.blur();
@@ -74,12 +78,36 @@ var Inits = (function() {
     el.dataset.name = name;
     el.innerHTML = '<span>' + name + '</span> <b>' + init + '</b>';
 
+    el.addEventListener('click', onInitClick);
+
     elList.appendChild(el);
 
     elValue.value = '';
     elName.value = '';
 
     elName.focus();
+  }
+
+  function onInitClick(e) {
+    if (document.body.classList.contains('read-only')) {
+      return;
+    }
+    
+    var elInit = this,
+        name = elInit.dataset.name,
+        init = elInit.dataset.init;
+
+    var newInit = prompt('Please enter the new init for ' + name + ': ', init) || init;
+
+    for (var i = 0, player; player = players[i++];) {
+      if (player.name === name) {
+        player.init = newInit;
+      }
+    }
+
+    render();
+
+    onInitChange();
   }
 
   return {
